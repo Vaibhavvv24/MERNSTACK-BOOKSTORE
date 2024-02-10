@@ -6,11 +6,13 @@ import About from "../../frontend/src/pages/About";
 import Shop from "../../frontend/src/pages/Shop";
 import Contact from "../../frontend/src/pages/Contact";
 import Blog from "../../frontend/src/pages/Blog";
+import Navbar from "./components/Navbar";
 
 function App() {
   return (
     <>
       <BrowserRouter>
+        <Navbar />
         <Routes>
           <Route path="/" index element={<Home />} />
           <Route path="/sell" element={<Sell />} />
