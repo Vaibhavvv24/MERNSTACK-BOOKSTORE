@@ -7,6 +7,8 @@ import Shop from "../../frontend/src/pages/Shop";
 import Contact from "../../frontend/src/pages/Contact";
 import Blog from "../../frontend/src/pages/Blog";
 import Navbar from "./components/Navbar";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
           <Route path="/shop" element={<Shop />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
           <Route path="*" element={<Home />} />
         </Routes>
       </BrowserRouter>

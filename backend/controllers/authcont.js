@@ -4,9 +4,9 @@ import jwt from "jsonwebtoken";
 
 export const Signup = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    const { username, email, password } = req.body;
     const hashedpwd = await bcryptjs.hash(password, 10);
-    const newUser = new User({ name, email, password: hashedpwd });
+    const newUser = new User({ username, email, password: hashedpwd });
     await newUser.save();
     res.status(201).json(newUser);
   } catch (err) {
@@ -26,7 +26,40 @@ export const Login = async (req, res) => {
         httpOnly: true,
       })
       .status(200)
-      .json(validemailuser);
+      .json(user);
+  } catch (err) {
+    res.status(409).json({ message: err.message });
+  }
+};
+export const Googlefun = async (req, res) => {
+  try {
+    const user = await User.findOne({ email: req.body.email });
+    if (user) {
+      //if user already exists
+      const token = jwt.sign({ id: user._id }, "secretkey");
+      res
+        .cookie("token", token, {
+          httpOnly: true,
+        })
+        .status(200)
+        .json(user);
+    } else {
+      const newpwd = Math.random().toString(36).slice(-8); //if user doesn't exist
+      const hashedpwd = await bcryptjs.hash(newpwd, 10);
+      const newUser = new User({
+        username: req.body.name,
+        email: req.body.email,
+        password: hashedpwd,
+      });
+      await newUser.save();
+      const token = jwt.sign({ id: user._id }, "secretkey");
+      res
+        .cookie("token", token, {
+          httpOnly: true,
+        })
+        .status(200)
+        .json(user);
+    }
   } catch (err) {
     res.status(409).json({ message: err.message });
   }
