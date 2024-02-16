@@ -9,6 +9,7 @@ import Blog from "../../frontend/src/pages/Blog";
 import Navbar from "./components/Navbar";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import Bookpage from "./pages/Bookpage";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/blog" element={<Blog />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/shop/book/:id" element={<Bookpage />} />
           <Route path="*" element={<Home />} />
         </Routes>
       </BrowserRouter>
