@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import Profilepic from "../assets/profile.webp";
 
 const Profile = () => {
   const [currentUser, setCurrentUser] = useState({});
@@ -84,9 +85,12 @@ const Profile = () => {
 
   return (
     <div className="text-center my-10 ">
-      <h1>This is About Page</h1>
+      <h1 className="text-2xl my-10">Your Profile</h1>
       <div className="flex justify-center items-center ">
         <form className="flex flex-col gap-2 w-1/2 ">
+          <div className="flex justify-center">
+            <img src={Profilepic} alt="profile" className="w-48 h-48" />
+          </div>
           <input
             type="text"
             placeholder="username"

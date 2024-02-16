@@ -41,7 +41,7 @@ const Login = () => {
       setError(null);
       setLoading(false);
 
-      navigate("/");
+      navigate(`/profile/${data._id}`);
     } catch (error) {
       setLoading(false);
       setError(error.message);

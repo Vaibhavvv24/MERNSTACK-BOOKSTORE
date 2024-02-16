@@ -4,10 +4,14 @@ const Sell = () => {
   const [formData, setFormData] = useState({
     title: "",
     author: "",
-    price: 0,
+    regularPrice: 0,
+    salePrice: 0,
     category: "",
     image: "",
     description: "",
+    reviews: 0,
+    rating: 0,
+    publisher: "",
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -66,12 +70,30 @@ const Sell = () => {
             className="p-2 shadow-md border-solid rounded-md w-full"
           />
           <input
-            type="number"
-            id="price"
-            placeholder="Price"
+            type="text"
+            id="publisher"
+            placeholder="Publisher"
             onChange={handleChange}
             required
-            value={formData.price}
+            value={formData.publisher}
+            className="p-2 shadow-md border-solid rounded-md w-full"
+          />
+          <input
+            type="number"
+            id="regularPrice"
+            placeholder="MRP"
+            onChange={handleChange}
+            required
+            value={formData.regularPrice}
+            className="p-2 shadow-md border-solid rounded-md w-full"
+          />
+          <input
+            type="number"
+            id="salePrice"
+            placeholder="Sale Price"
+            onChange={handleChange}
+            required
+            value={formData.salePrice}
             className="p-2 shadow-md border-solid rounded-md w-full"
           />
           <input
@@ -83,6 +105,26 @@ const Sell = () => {
             value={formData.category}
             className="p-2 shadow-md border-solid rounded-md w-full"
           />
+          <input
+            type="number"
+            id="reviews"
+            placeholder="Number of reviews"
+            onChange={handleChange}
+            required
+            value={formData.reviews}
+            className="p-2 shadow-md border-solid rounded-md w-full"
+          />
+          <input
+            type="number"
+            id="rating"
+            step={"0.1"}
+            placeholder="Rating out of 5"
+            onChange={handleChange}
+            required
+            value={formData.rating}
+            className="p-2 shadow-md border-solid rounded-md w-full"
+          />
+
           <input
             type="file"
             id="image"
