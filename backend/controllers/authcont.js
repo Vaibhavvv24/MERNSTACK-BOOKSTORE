@@ -64,3 +64,11 @@ export const Googlefun = async (req, res) => {
     res.status(409).json({ message: err.message });
   }
 };
+export const Logout = async (req, res) => {
+  try {
+    res.clearCookie("token");
+    res.status(200).json("Logged out");
+  } catch (err) {
+    res.status(409).json({ message: err.message });
+  }
+};

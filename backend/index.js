@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import bookRoute from "./routes/Book_route.js";
 import cookieParser from "cookie-parser";
 import authRoute from "./routes/auth_route.js";
+import userRoute from "./routes/user_route.js";
 mongoose
   .connect(
     `mongodb+srv://mittal277:${encodeURIComponent(
@@ -17,6 +18,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use("/api/books", bookRoute);
 app.use("/api/auth", authRoute);
+app.use("/api/user", userRoute);
 app.listen(3000, () => {
   console.log("listening on port 3000");
 });

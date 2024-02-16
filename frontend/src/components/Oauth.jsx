@@ -24,7 +24,7 @@ const Oauth = () => {
       const data = await result.json();
       console.log(data);
 
-      navigate("/");
+      navigate(`/profile/${data._id}`);
     } catch (error) {
       console.log(error);
     }
