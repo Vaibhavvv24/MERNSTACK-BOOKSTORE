@@ -1,0 +1,301 @@
+{
+  "books": [
+    {
+      "title": "The Great Gatsby",
+      "author": "F. Scott Fitzgerald",
+      "description": "The story of the mysterious Jay Gatsby and his love for Daisy Buchanan.",
+      "category": "Classic Fiction",
+      "image": "thegreatgatsby.jpg",
+      "price": 10.99
+    },
+    {
+      "title": "To Kill a Mockingbird",
+      "author": "Harper Lee",
+      "description": "A novel about racial injustice and loss of innocence in the American South.",
+      "category": "Fiction",
+      "image": "tokillamockingbird.jpg",
+      "price": 9.99
+    },
+    {
+      "title": "1984",
+      "author": "George Orwell",
+      "description": "A dystopian novel depicting a totalitarian regime and the struggle for individuality.",
+      "category": "Dystopian Fiction",
+      "image": "1984.jpg",
+      "price": 11.99
+    },
+    {
+      "title": "Pride and Prejudice",
+      "author": "Jane Austen",
+      "description": "A classic novel revolving around the lives of the Bennet sisters and their pursuit of love and happiness.",
+      "category": "Classic Fiction",
+      "image": "prideandprejudice.jpg",
+      "price": 8.99
+    },
+    {
+      "title": "Harry Potter and the Sorcerer's Stone",
+      "author": "J.K. Rowling",
+      "description": "The first book in the Harry Potter series, introducing the young wizard Harry Potter and his adventures at Hogwarts School of Witchcraft and Wizardry.",
+      "category": "Fantasy",
+      "image": "harrypotter1.jpg",
+      "price": 12.99
+    },
+    {
+      "title": "The Catcher in the Rye",
+      "author": "J.D. Salinger",
+      "description": "A novel about teenage angst and alienation in society.",
+      "category": "Coming-of-Age Fiction",
+      "image": "thecatcherintherye.jpg",
+      "price": 9.49
+    },
+    {
+      "title": "Lord of the Flies",
+      "author": "William Golding",
+      "description": "A group of young boys stranded on a deserted island and their descent into savagery.",
+      "category": "Adventure Fiction",
+      "image": "lordoftheflies.jpg",
+      "price": 10.25
+    },
+    {
+      "title": "The Hobbit",
+      "author": "J.R.R. Tolkien",
+      "description": "The prelude to The Lord of the Rings, following the journey of Bilbo Baggins.",
+      "category": "Fantasy",
+      "image": "thehobbit.jpg",
+      "price": 11.75
+    },
+    {
+      "title": "The Lord of the Rings",
+      "author": "J.R.R. Tolkien",
+      "description": "A classic fantasy epic following the quest to destroy the One Ring.",
+      "category": "Fantasy",
+      "image": "thelordoftherings.jpg",
+      "price": 20.99
+    },
+    {
+      "title": "Moby-Dick",
+      "author": "Herman Melville",
+      "description": "The story of Captain Ahab's obsessive quest for revenge against the white whale.",
+      "category": "Adventure Fiction",
+      "image": "mobydick.jpg",
+      "price": 14.99
+    },
+    {
+      "title": "The Da Vinci Code",
+      "author": "Dan Brown",
+      "description": "A thriller involving secret societies, ancient mysteries, and hidden codes.",
+      "category": "Thriller",
+      "image": "thedavincicode.jpg",
+      "price": 13.49
+    },
+    {
+      "title": "The Alchemist",
+      "author": "Paulo Coelho",
+      "description": "A philosophical novel about following one's dreams and the journey of self-discovery.",
+      "category": "Philosophical Fiction",
+      "image": "thealchemist.jpg",
+      "price": 9.99
+    },
+    {
+      "title": "The Hunger Games",
+      "author": "Suzanne Collins",
+      "description": "In a dystopian future, children are forced to fight to the death in an annual event.",
+      "category": "Dystopian Fiction",
+      "image": "thehungergames.jpg",
+      "price": 11.49
+    },
+    {
+      "title": "The Chronicles of Narnia",
+      "author": "C.S. Lewis",
+      "description": "A series of fantasy novels following the adventures in the magical land of Narnia.",
+      "category": "Fantasy",
+      "image": "thechroniclesofnarnia.jpg",
+      "price": 18.99
+    },
+    {
+      "title": "Brave New World",
+      "author": "Aldous Huxley",
+      "description": "A dystopian novel set in a futuristic world where people are controlled by technology and government.",
+      "category": "Dystopian Fiction",
+      "image": "bravenewworld.jpg",
+      "price": 12.99
+    },
+    {
+      "title": "The Picture of Dorian Gray",
+      "author": "Oscar Wilde",
+      "description": "A story of moral corruption and the consequences of vanity and debauchery.",
+      "category": "Gothic Fiction",
+      "image": "thepictureofdoriangray.jpg",
+      "price": 10.99
+    },
+    {
+      "title": "The Road",
+      "author": "Cormac McCarthy",
+      "description": "A post-apocalyptic novel following a father and son's journey through a burned America.",
+      "category": "Post-Apocalyptic Fiction",
+      "image": "theroad.jpg",
+      "price": 13.99
+    },
+    {
+      "title": "Gone with the Wind",
+      "author": "Margaret Mitchell",
+      "description": "A historical novel set in the American South during the Civil War and Reconstruction era.",
+      "category": "Historical Fiction",
+      "image": "gonewiththewind.jpg",
+      "price": 16.49
+    },
+    {
+      "title": "The Shining",
+      "author": "Stephen King",
+      "description": "A psychological horror novel about a family's terrifying experience in a haunted hotel.",
+      "category": "Horror",
+      "image": "theshining.jpg",
+      "price": 14.99
+    },
+
+    {
+      "title": "The Hitchhiker's Guide to the Galaxy",
+      "author": "Douglas Adams",
+      "description": "A comedic science fiction series following the adventures of Arthur Dent after the destruction of Earth.",
+      "category": "Science Fiction",
+      "image": "thehitchhikersguidetothegalaxy.jpg",
+      "price": 11.99
+    },
+    {
+      "title": "The Road Less Traveled",
+      "author": "M. Scott Peck",
+      "description": "A self-help book exploring spiritual growth and personal development.",
+      "category": "Self-Help",
+      "image": "theroadlesstraveled.jpg",
+      "price": 9.99
+    },
+    {
+      "title": "The Art of War",
+      "author": "Sun Tzu",
+      "description": "An ancient Chinese military treatise on strategy and tactics.",
+      "category": "Military Strategy",
+      "image": "theartofwar.jpg",
+      "price": 8.49
+    },
+    {
+      "title": "A Game of Thrones",
+      "author": "George R.R. Martin",
+      "description": "The first book in the epic fantasy series A Song of Ice and Fire, depicting the power struggles among noble families in the Seven Kingdoms of Westeros.",
+      "category": "Fantasy",
+      "image": "agameofthrones.jpg",
+      "price": 14.99
+    },
+    {
+      "title": "The Help",
+      "author": "Kathryn Stockett",
+      "description": "A novel set in 1960s Mississippi, exploring the lives of African American maids and their relationships with white families.",
+      "category": "Historical Fiction",
+      "image": "thehelp.jpg",
+      "price": 12.75
+    },
+    {
+      "title": "The Secret Life of Bees",
+      "author": "Sue Monk Kidd",
+      "description": "A coming-of-age novel set in the 1960s South, revolving around a young girl's journey to uncover the truth about her mother's past.",
+      "category": "Coming-of-Age Fiction",
+      "image": "thesecretlifeofbees.jpg",
+      "price": 10.49
+    },
+    {
+      "title": "The Girl with the Dragon Tattoo",
+      "author": "Stieg Larsson",
+      "description": "A crime thriller novel following journalist Mikael Blomkvist and hacker Lisbeth Salander as they investigate a decades-old disappearance.",
+      "category": "Mystery",
+      "image": "thegirlwiththedragontattoo.jpg",
+      "price": 13.99
+    },
+    {
+      "title": "The Catcher Was a Spy",
+      "author": "Nicholas Dawidoff",
+      "description": "A biography of Moe Berg, a major league baseball player who served as a spy for the Office of Strategic Services during World War II.",
+      "category": "Biography",
+      "image": "thecatcherwasaspy.jpg",
+      "price": 15.25
+    },
+    {
+      "title": "The Night Circus",
+      "author": "Erin Morgenstern",
+      "description": "A fantasy novel set in a magical circus that arrives without warning and features two young magicians bound by a deadly competition.",
+      "category": "Fantasy",
+      "image": "thenightcircus.jpg",
+      "price": 11.99
+    },
+    {
+      "title": "The Handmaid's Tale",
+      "author": "Margaret Atwood",
+      "description": "A dystopian novel set in a totalitarian society where women are treated as property of the state.",
+      "category": "Dystopian Fiction",
+      "image": "thehandmaidstale.jpg",
+      "price": 12.99
+    },
+    {
+      "title": "The Martian",
+      "author": "Andy Weir",
+      "description": "A science fiction novel about an astronaut stranded on Mars and his struggle to survive and find a way back to Earth.",
+      "category": "Science Fiction",
+      "image": "themartian.jpg",
+      "price": 10.99
+    },
+    {
+      "title": "Educated",
+      "author": "Tara Westover",
+      "description": "A memoir recounting the author's journey from growing up in a strict, survivalist family in rural Idaho to eventually earning a PhD from Cambridge University.",
+      "category": "Memoir",
+      "image": "educated.jpg",
+      "price": 14.49
+    },
+    {
+      "title": "Sapiens: A Brief History of Humankind",
+      "author": "Yuval Noah Harari",
+      "description": "A book that explores the history of Homo sapiens from the emergence of archaic humans in Africa to the present day.",
+      "category": "History",
+      "image": "sapiens.jpg",
+      "price": 13.99
+    },
+    {
+      "title": "The Road to Character",
+      "author": "David Brooks",
+      "description": "A philosophical exploration of moral character and personal virtues.",
+      "category": "Philosophy",
+      "image": "theroadtocharacter.jpg",
+      "price": 11.25
+    },
+    {
+      "title": "The Immortal Life of Henrietta Lacks",
+      "author": "Rebecca Skloot",
+      "description": "A nonfiction book that tells the story of Henrietta Lacks, whose cells were taken without her consent and became the foundation of countless medical breakthroughs.",
+      "category": "Nonfiction",
+      "image": "theimmortallifeofhenriettalacks.jpg",
+      "price": 12.99
+    },
+    {
+      "title": "The Kite Runner",
+      "author": "Khaled Hosseini",
+      "description": "A novel set in Afghanistan, depicting the friendship between a wealthy boy and the son of his father's servant, and the consequences of betrayal and redemption.",
+      "category": "Historical Fiction",
+      "image": "thekiterunner.jpg",
+      "price": 10.99
+    },
+    {
+      "title": "The Road to Serfdom",
+      "author": "Friedrich Hayek",
+      "description": "A classic work of political philosophy that argues for the importance of individual liberty and the dangers of central planning and government control.",
+      "category": "Political Philosophy",
+      "image": "theroadtoserfdom.jpg",
+      "price": 9.75
+    },
+    {
+      "title": "The Grapes of Wrath",
+      "author": "John Steinbeck",
+      "description": "A Pulitzer Prize-winning novel depicting the struggles of a family during the Great Depression as they journey from Oklahoma to California in search of work.",
+      "category": "Historical Fiction",
+      "image": "thegrapesofwrath.jpg",
+      "price": 11.99
+    }
+  ]
+}

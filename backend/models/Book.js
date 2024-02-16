@@ -24,6 +24,10 @@ const bookSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  admin: {
+    type: String,
+    required: true,
+  },
 });
 
 const Book = mongoose.model("Book", bookSchema);
