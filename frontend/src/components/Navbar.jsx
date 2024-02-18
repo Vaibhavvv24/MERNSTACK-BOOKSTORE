@@ -1,7 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { UseAuth } from "../context/Auth";
 
 const Navbar = () => {
+  const { user } = UseAuth();
+  console.log(user);
   return (
     <nav className="bg-blue-200">
       <div className="flex ">
@@ -25,6 +28,11 @@ const Navbar = () => {
           <li>
             <Link to="/sell">Sell your books</Link>
           </li>
+          {user && (
+            <li>
+              <Link to={`/profile/${user._id}`}>Profile</Link>
+            </li>
+          )}
           <li>
             <Link to="/login">Login</Link>
           </li>

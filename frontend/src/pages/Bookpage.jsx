@@ -36,7 +36,7 @@ const Bookpage = () => {
       {error && <h1>{error.message}</h1>}
       <div className="w-1/4">
         <img
-          src={Harry}
+          src={book.image}
           alt={book.title}
           className="cover w-48 h-64 mx-20 mb-10 mt-10"
         />
