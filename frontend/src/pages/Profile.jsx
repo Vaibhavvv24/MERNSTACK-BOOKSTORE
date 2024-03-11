@@ -10,27 +10,59 @@ const Profile = () => {
   // const navigate = useNavigate();
   //const { id } = params;
 
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const params = useParams();
-  const [user, setUser] = useState({});
+  //const [username, setUsername] = useState("");
+  //const [email, setEmail] = useState("");
+  //const [password, setPassword] = useState("");
+  const { user, setUser } = UseAuth();
+  const currentUser = JSON.parse(localStorage.getItem("user"));
+  const [formData, setFormData] = useState({ currentUser });
+  //const params = useParams();
+  //const [user, setUser] = useState({});
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const { id } = params;
+  const handleChangeupdate = (e) => {
+    setFormData({ ...formData, [e.target.id]: e.target.value });
+  };
+  const handleUpdate = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await fetch(`/api/user/update/${currentUser._id}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      const data = await res.json();
+      console.log(data);
+      setFormData(data);
+      //setUser(data);
+      localStorage.setItem("user", JSON.stringify(data));
+      setUser(JSON.parse(localStorage.getItem("user")));
+      //setUsername(data.username);
+      //setEmail(data.email);
+      //setPassword(data.password);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  //const { id } = params;
   //const { user, handleDelete, handleUpdate, handleLogout, loading } = UseAuth();
   async function getCurrentUser() {
     try {
       setLoading(true);
-      const res = await fetch(`/api/user/${id}`);
+      const res = await fetch(`/api/user/${currentUser._id}`);
       const data = await res.json();
       console.log(data);
-      setUser(data);
-      setUsername(data.username);
-      setEmail(data.email);
-      setPassword(data.password);
+      setFormData(data);
+
+      //setUsername(data.username);
+      //setEmail(data.email);
+      //setPassword(data.password);
 
       setLoading(false);
+      console.log("get current user");
       console.log(data);
     } catch (error) {
       console.log(error);
@@ -39,36 +71,12 @@ const Profile = () => {
 
   useEffect(() => {
     getCurrentUser();
-  }, [id]);
+  }, []);
 
-  const handleUpdate = async (e) => {
-    e.preventDefault();
-    try {
-      const res = await fetch(`/api/user/update/${id}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username: e.target.username.value,
-          email: e.target.email.value,
-          password: e.target.password.value,
-        }),
-      });
-      const data = await res.json();
-      console.log(data);
-      setUser(data);
-      //setUsername(data.username);
-      //setEmail(data.email);
-      //setPassword(data.password);
-    } catch (error) {
-      console.log(error);
-    }
-  };
   const handleDelete = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch(`/api/user/delete/${id}`, {
+      const res = await fetch(`/api/user/delete/${currentUser._id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -76,7 +84,9 @@ const Profile = () => {
       });
       const data = await res.json();
       console.log(data);
-      setUser({});
+      setFormData({});
+      localStorage.removeItem("user");
+      //setUser({});
       //setEmail("");
       //setPassword("");
       //setUsername("");
@@ -96,7 +106,9 @@ const Profile = () => {
         },
       });
       const data = await res.json();
-      setUser({});
+      setFormData({});
+      localStorage.removeItem("user");
+
       //setEmail("");
       //setPassword("");
       //setUsername("");
@@ -106,15 +118,18 @@ const Profile = () => {
       console.log(error);
     }
   };
+  console.log("form wala");
+  console.log(formData);
+  console.log("user wala");
   console.log(user);
 
   return (
     <>
       <div className="flex justify-center items-center">
         <h1 className="text-3xl my-10">Profile</h1>
-        <h1>Welcome {user.username}</h1>
-        <h2>{user.email}</h2>
-        <h2>{user.password}</h2>
+        <h1>Welcome {currentUser.username}</h1>
+        <h2>{currentUser.email}</h2>
+        <h2>{currentUser.password}</h2>
       </div>
 
       <div className="text-center my-10 ">
@@ -128,29 +143,29 @@ const Profile = () => {
               type="text"
               placeholder="username"
               id="username"
-              value={username}
+              defaultValue={currentUser.username}
               name="username"
               //value={username}
               className="rounded-md shadow-md p-3  w-full"
-              onChange={(e) => setUsername(e.target.value)}
+              onChange={handleChangeupdate}
             />
             <input
               type="email"
               placeholder="email"
               id="email"
               name="email"
-              defaultValue={user.email}
+              defaultValue={currentUser.email}
               className="rounded-md shadow-md p-3  w-full"
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={handleChangeupdate}
             />
             <input
               type="password"
               id="password"
               placeholder="password"
               name="password"
-              defaultValue={user.password}
+              defaultValue={currentUser.password}
               className="rounded-md shadow-md p-3 w-full"
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={handleChangeupdate}
             />
             <button
               disabled={loading}

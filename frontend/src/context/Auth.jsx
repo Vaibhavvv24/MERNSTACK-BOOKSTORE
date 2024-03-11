@@ -7,15 +7,15 @@ const AuthContext = createContext();
 
 function AuthProvider({ children }) {
   const [user, setUser] = useState({});
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  //const [username, setUsername] = useState("");
+  //const [email, setEmail] = useState("");
+  //const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-  const params = useParams();
+  //const params = useParams();
   // const navigate = useNavigate();
-  const { id } = params;
+  //const { id } = params;
 
   async function Signup(e) {
     e.preventDefault();
@@ -41,8 +41,9 @@ function AuthProvider({ children }) {
         setError(data.message);
         return;
       }
-      setUser(data);
-      console.log(data);
+      localStorage.setItem("user", JSON.stringify(data));
+      setUser(JSON.parse(localStorage.getItem("user")));
+      //console.log(data);
       setLoading(false); //if data.success is true then user is logged in and error not shown
       setError(null);
       navigate("/login");
@@ -84,7 +85,9 @@ function AuthProvider({ children }) {
       // setLoading(false); //if data.success is true then user is logged in and error not shown
       setError(null);
       setLoading(false);
-      setUser(data);
+
+      localStorage.setItem("user", JSON.stringify(data));
+      setUser(JSON.parse(localStorage.getItem("user")));
       navigate(`/profile/${data._id}`);
     } catch (error) {
       setLoading(false);
@@ -111,6 +114,8 @@ function AuthProvider({ children }) {
       const data = await result.json();
       console.log(data);
       setUser(data);
+      localStorage.setItem("user", JSON.stringify(data));
+      setUser(JSON.parse(localStorage.getItem("user")));
 
       navigate(`/profile/${data._id}`);
     } catch (error) {
@@ -122,13 +127,11 @@ function AuthProvider({ children }) {
     <AuthContext.Provider
       value={{
         Signup,
+        setUser,
         user,
         Login,
         loading,
         error,
-        username,
-        email,
-        password,
         handleGoogle,
       }}
     >

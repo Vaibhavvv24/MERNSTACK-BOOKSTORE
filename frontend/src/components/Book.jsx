@@ -12,7 +12,7 @@ const Book = ({ book }) => {
     >
       <h1 className="text-2xl">{book.title}</h1>
       <img
-        src={Harry}
+        src={book.image}
         alt={book.title}
         className="cover w-48 h-64 mx-20 mb-10 mt-10"
       />

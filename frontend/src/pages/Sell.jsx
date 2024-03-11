@@ -20,6 +20,7 @@ const Sell = () => {
   const [error, setError] = useState(null);
   const [postImage, setPostImage] = useState({ myFile: "" });
   const { user } = UseAuth();
+
   const Navigate = useNavigate();
   const handleChange = (e) => {
     setFormData({
