@@ -68,7 +68,7 @@ export const Forgot = async (req, res, next) => {
   try {
     const user = await User.findOne({ email: req.body.email });
     if (!user) {
-      return res.json("User not found");
+      return res.json({ message: "User not found" });
     }
     const resetToken = await user.generateToken();
     await user.save();
