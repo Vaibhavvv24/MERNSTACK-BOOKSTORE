@@ -56,8 +56,14 @@ const Cartpage = () => {
             <CartItem key={item._id} item={item} />
           ))}
         </div>
-        <div className="flex flex-col justify-center items-center gap-4 m-2 bg-blue-300 w-[300px] h-[200px] rounded-md">
-          <h1 className="text-2xl text-red-500">Total: ₹{getTotalamount()}</h1>
+        <div className="flex flex-col justify-center items-center gap-4 m-2 bg-blue-200 w-[300px] h-[300px] rounded-md">
+          <h1 className="text-2xl text-red-500">Total: ₹{getTotal()}</h1>
+          <p className="text-xl text-red-400">
+            Delivery charges: ₹{getTotal() * 0.1}
+          </p>
+          <p className="text-xl text-red-700 ">
+            Grand Total: ₹{getTotal() + getTotal() * 0.1}
+          </p>
           <button onClick={clearCart} className="p-2 bg-orange-300 rounded-md">
             Clear Cart
           </button>

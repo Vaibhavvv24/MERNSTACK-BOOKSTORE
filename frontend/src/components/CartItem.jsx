@@ -42,7 +42,7 @@ const CartItem = ({ item }) => {
 
         {/* <p className="text-lg truncate">{item.description.substring(0, 100)}</p> */}
         <div className="flex justify-between">
-          <div className="flex gap-2 mt-5">
+          {/* <div className="flex gap-2 mt-5">
             <AiOutlineMinusCircle
               size={25}
               onClick={handleDec}
@@ -55,7 +55,7 @@ const CartItem = ({ item }) => {
               onClick={handleInc}
               disabled={quantity === 1}
             />
-          </div>
+          </div> */}
           <button onClick={handleRemove}>
             <MdDelete size={30} />
           </button>
