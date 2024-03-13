@@ -17,6 +17,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { Login, loading, error } = UseAuth();
+  const navigate = useNavigate();
 
   return (
     <div className="p-3 max-w-lg mx-auto">
@@ -47,11 +48,17 @@ const Login = () => {
         </button>
         <Oauth />
       </form>
-      <div className="flex gap-2 mt-5">
+      <div className="flex gap-4 mt-5">
         <p>Dont have an account?</p>
+
         <Link to={"/signup"}>
           <span className="text-blue-700">Sign up</span>
         </Link>
+        <div>
+          <button className="text-red-500" onClick={() => navigate("/forgot")}>
+            Forgot Password?
+          </button>
+        </div>
       </div>
       {error && <p className="text-red-500 mt-5">{error}</p>}
     </div>

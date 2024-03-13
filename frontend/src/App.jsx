@@ -17,6 +17,8 @@ import Cartpage from "./pages/Cartpage";
 import Checkout from "./pages/Checkout";
 import Checkoutsingle from "./pages/Checkoutsingle";
 import PaymentSuccess from "./pages/PaymentSuccess";
+import Forgot from "./pages/Forgot";
+import ResetPass from "./pages/ResetPass";
 
 function App() {
   return (
@@ -45,6 +47,8 @@ function App() {
               <Route path="/signup" element={<Signup />} />
               <Route path="/shop/book/:id" element={<Bookpage />} />
               <Route path="/paymentsuccess" element={<PaymentSuccess />} />
+              <Route path="/reset/:token" element={<ResetPass />} />
+              <Route path="/forgot" element={<Forgot />} />
               <Route path="*" element={<Home />} />
             </Routes>
           </CartProvider>
