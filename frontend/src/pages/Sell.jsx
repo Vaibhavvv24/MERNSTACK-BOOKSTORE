@@ -20,6 +20,7 @@ const Sell = () => {
   const [error, setError] = useState(null);
   const [postImage, setPostImage] = useState({ myFile: "" });
   const { user } = UseAuth();
+  const currentUser = JSON.parse(localStorage.getItem("user"));
 
   const Navigate = useNavigate();
   const handleChange = (e) => {
@@ -65,7 +66,7 @@ const Sell = () => {
   return (
     <div>
       <h1 className="text-3xl text-center mt-10">
-        Sell your book here {user.username}
+        Sell your book here {currentUser.username}
       </h1>
       <div className="flex justify-center items-center mt-5">
         <form className="flex flex-col w-1/2 gap-4" onSubmit={handleSubmit}>

@@ -3,8 +3,9 @@ import { UseAuth } from "../context/Auth";
 
 const Private = () => {
   const { user } = UseAuth();
+  const currentUser = JSON.parse(localStorage.getItem("user"));
 
-  return user ? <Outlet /> : <Navigate to="/login" />; //if user is not logged in then navigate to login page
+  return currentUser ? <Outlet /> : <Navigate to="/login" />; //if user is not logged in then navigate to login page
   // else return <Outlet />
 };
 

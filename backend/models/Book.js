@@ -45,6 +45,10 @@ const bookSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    quantity: {
+      type: Number,
+      default: 10,
+    },
   },
   {
     timestamps: true,

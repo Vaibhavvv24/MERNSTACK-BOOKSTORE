@@ -4,6 +4,7 @@ import { UseAuth } from "../context/Auth";
 
 const Navbar = () => {
   const { user } = UseAuth();
+  const currentUser = JSON.parse(localStorage.getItem("user"));
   console.log(user);
   return (
     <nav className="bg-blue-200">
@@ -28,13 +29,16 @@ const Navbar = () => {
           <li>
             <Link to="/sell">Sell your books</Link>
           </li>
-          {user && (
+          {currentUser && (
             <li>
-              <Link to={`/profile/${user._id}`}>Profile</Link>
+              <Link to={`/profile/${currentUser._id}`}>Profile</Link>
             </li>
           )}
           <li>
             <Link to="/login">Login</Link>
+          </li>
+          <li>
+            <Link to="/cart">Cart</Link>
           </li>
           <li>
             <Link to="/contact">Contact</Link>

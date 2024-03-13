@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Harry from "../assets/harry.jpg";
-import { AiOutlinePlusCircle } from "react-icons/ai";
-import { AiOutlineMinusCircle } from "react-icons/ai";
+
+import { UseCart } from "../context/Cart";
 
 const Bookpage = () => {
   const params = useParams();
@@ -10,7 +10,9 @@ const Bookpage = () => {
   const [book, setBook] = useState({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [quantity, setQuantity] = useState(1);
+
+  const { cart, addItem, removeItem, clearCart, getTotal } = UseCart();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getBook = async function () {
@@ -30,6 +32,13 @@ const Bookpage = () => {
   }, [id]);
   const discount = book.regularPrice - book.salePrice;
 
+  function addItems() {
+    console.log(cart);
+    if (cart.items.find((item) => item._id === book._id)) {
+      return;
+    }
+    addItem(book._id);
+  }
   return (
     <div className="flex">
       {loading && <h1>Loading...</h1>}
@@ -63,24 +72,16 @@ const Bookpage = () => {
       </div>
       <div className="w-1/4 flex mt-10 ">
         <div className="flex flex-col items-center gap-4 w-[85%] h-2/3 border border-4 rounded-md border-slate-300">
-          <div className="flex gap-2 mt-5">
-            <AiOutlineMinusCircle
-              size={25}
-              onClick={() => setQuantity((quantity) => quantity - 1)}
-              disabled={quantity === 1}
-            />
-            <p className="text-xl font-medium"> {quantity} </p>
-
-            <AiOutlinePlusCircle
-              size={25}
-              onClick={() => setQuantity((quantity) => quantity + 1)}
-              disabled={quantity === 1}
-            />
-          </div>
-          <button className="bg-green-400 p-2 rounded-lg w-[90%] text-white ">
+          <button
+            className="bg-green-400 p-2 rounded-lg w-[90%] text-white "
+            onClick={() => addItems()}
+          >
             Add to Cart
           </button>
-          <button className="bg-orange-300 p-2 rounded-lg w-[90%] text-white ">
+          <button
+            className="bg-orange-300 p-2 rounded-lg w-[90%] text-white "
+            onClick={() => navigate(`/shop/book/checkout/${book._id}`)}
+          >
             Buy Now
           </button>
         </div>

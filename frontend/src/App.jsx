@@ -12,29 +12,40 @@ import Signup from "./pages/Signup";
 import Bookpage from "./pages/Bookpage";
 import { AuthProvider } from "./context/Auth";
 import Private from "./components/Private";
+import { CartProvider } from "./context/Cart";
+import Cartpage from "./pages/Cartpage";
+import Checkout from "./pages/Checkout";
+import Checkoutsingle from "./pages/Checkoutsingle";
 
 function App() {
   return (
     <>
       <BrowserRouter>
         <AuthProvider>
-          <Navbar />
-          <Routes>
-            <Route path="/" index element={<Home />} />
-            <Route element={<Private />}>
-              <Route path="/sell" element={<Sell />} />
-              <Route path="/profile/:id" element={<Profile />} />
-            </Route>
-            <Route path="/shop" element={<Shop />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-
-            <Route path="/shop/book/:id" element={<Bookpage />} />
-
-            <Route path="*" element={<Home />} />
-          </Routes>
+          <CartProvider>
+            <Navbar />
+            <Routes>
+              <Route path="/" index element={<Home />} />
+              <Route element={<Private />}>
+                <Route path="/sell" element={<Sell />} />
+                <Route path="/profile/:id" element={<Profile />} />
+              </Route>
+              <Route path="/cart" element={<Cartpage />} />
+              <Route path="/shop" element={<Shop />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/shop/book/checkout" element={<Checkout />} />
+              <Route
+                path="/shop/book/checkout/:id"
+                element={<Checkoutsingle />}
+              />
+              `
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/shop/book/:id" element={<Bookpage />} />
+              <Route path="*" element={<Home />} />
+            </Routes>
+          </CartProvider>
         </AuthProvider>
       </BrowserRouter>
     </>
