@@ -43,14 +43,14 @@ const Sell = () => {
         body: JSON.stringify({
           ...formData,
           image: postImage.myFile,
-          admin: user._id,
+          admin: currentUser._id,
         }),
       });
       const data = await res.json();
       setLoading(false);
       setError(null);
-      Navigate("/shop");
       console.log(data);
+      Navigate("/shop");
     } catch (error) {
       setLoading(false);
       setError(error.message);

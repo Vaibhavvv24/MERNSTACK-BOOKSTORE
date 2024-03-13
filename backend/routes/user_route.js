@@ -5,11 +5,15 @@ import {
   getUser,
   getUserBooks,
   updateUser,
+  Forgot,
+  Reset
 } from "../controllers/usercont.js";
 
 const router = express.Router();
 router.post("/update/:id", verify, updateUser);
 router.delete("/delete/:id", verify, deleteUser);
-router.get("/listings/:id", verify, getUserBooks);
+router.get("/books/:id", verify, getUserBooks);
+router.post("/forgotpwd", Forgot);
+router.post("/resetpwd/:token",Reset);
 router.get("/:id", verify, getUser);
 export default router;

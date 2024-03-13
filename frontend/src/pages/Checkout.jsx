@@ -14,7 +14,7 @@ const Checkout = () => {
     const API_KEY = apiKey.KEY;
 
     console.log(API_KEY);
-    const amount = getTotal();
+    const amount = getTotal() + getTotal() * 0.1;
     const response = await fetch("/api/payment/checkout", {
       method: "POST",
       headers: {
@@ -55,43 +55,74 @@ const Checkout = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center">
-      <h1>Checkout</h1>
+    <div className="flex flex-col m-4">
+      <h1 className="text-3xl text-center">Checkout</h1>
 
-      <h1>Here is your Order Summary {currentUser.username}</h1>
-      <div className="flex mt-20 gap-10 ">
-        <div className="flex flex-col gap-10">
+      <h1 className="text-2xl text-center mt-3">
+        Here is your Order Summary {currentUser.username}
+      </h1>
+      <div className="flex mt-12 gap-10 ">
+        <div className="flex flex-col gap-10 w-1/2 bg-pink-600 p-5 rounded-md">
           {cart.items.map((item) => (
             <div
               key={item._id}
               className="flex flex-col justify-center gap-4 items-center bg-red-100 rounded-md"
             >
-              <p>Book:{item.title}</p>
-              <p>By:{item.author}</p>
-              <p>Price:{item.salePrice}</p>
-              <p>Published:{item.publisher}</p>
+              <p>Book: {item.title}</p>
+              <p>By: {item.author}</p>
+              <p>Price: ₹{item.salePrice}</p>
+              <p>Published: {item.publisher}</p>
             </div>
           ))}
         </div>
-        <div>
-          <h1>Total Amount:{getTotal()}</h1>
-          <form className="flex flex-col gap-4 mt-10">
+        <div className="flex flex-col items-center justify-center w-1/2 bg-blue-400 p-6 rounded-md">
+          <h1 className="text-2xl">
+            Total Amount:₹{getTotal() + getTotal() * 0.1}
+          </h1>
+          <h2 className="text-xl mt-2">Enter your Details</h2>
+
+          <form className="flex flex-col gap-5 mt-5 w-3/4">
             <input
               type="text"
               placeholder="Name"
               defaultValue={currentUser.username}
+              className="p-3 border-solid rounded-md w-full shadow-md"
             />
             <input
               type="text"
               placeholder="Email"
               defaultValue={currentUser.email}
+              className="p-3 border-solid rounded-md w-full shadow-md"
             />
-            <input type="phone" placeholder="Phone" />
-            <input 
+            <input
+              type="phone"
+              placeholder="Phone"
+              className="p-3 border-solid rounded-md w-full shadow-md"
+            />
+            <input
+              type="text"
+              placeholder="City"
+              className="p-3 border-solid rounded-md w-full shadow-md"
+            />
+            <input
+              type="text"
+              placeholder="State"
+              className="p-3 border-solid rounded-md w-full shadow-md"
+            />
+            <input
+              type="text"
+              placeholder="Zipcode"
+              className="p-3 border-solid rounded-md w-full shadow-md"
+            />
+            <input
+              type="text"
+              placeholder="Address"
+              className="p-3 border-solid rounded-md w-full shadow-md"
+            />
           </form>
           <button
             onClick={payNow}
-            className="bg-green-300 p-4 rounded-md text-white"
+            className="bg-green-300 p-4 rounded-md mt-4 w-1/2 text-white"
           >
             Pay Now
           </button>

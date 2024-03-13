@@ -69,7 +69,7 @@ const Cartpage = () => {
           </button>
           <button
             onClick={() => navigate(`/shop/book/checkout`)}
-            className="p-2 bg-orange-300 rounded-md"
+            className="p-3 bg-orange-300 rounded-md"
           >
             Proceed to Checkout
           </button>

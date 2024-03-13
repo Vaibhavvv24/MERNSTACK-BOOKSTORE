@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { UseAuth } from "../context/Auth";
+import { FaRegUserCircle } from "react-icons/fa";
 
 const Navbar = () => {
   const { user } = UseAuth();
@@ -31,12 +32,20 @@ const Navbar = () => {
           </li>
           {currentUser && (
             <li>
-              <Link to={`/profile/${currentUser._id}`}>Profile</Link>
+              <Link to={`/profile/${currentUser._id}`}>
+                <div className="flex gap-2">
+                  <FaRegUserCircle size={30} />
+                  <p>{currentUser.username}</p>
+                </div>
+              </Link>
             </li>
           )}
-          <li>
-            <Link to="/login">Login</Link>
-          </li>
+
+          {!currentUser && (
+            <li>
+              <Link to="/login">Login</Link>
+            </li>
+          )}
           <li>
             <Link to="/cart">Cart</Link>
           </li>
