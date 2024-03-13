@@ -14,16 +14,22 @@ export const Signup = async (req, res) => {
     await user.save();
     res.status(201).json("User created successfully!");
   } catch (err) {
-    res.status(409).json({ message: err.message });
+    res.status(409).json({ message: err.message, success: false });
   }
 };
 export const Login = async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
-    if (!user) res.status(404).json({ message: "User not found" });
+    if (!user)
+      res.status(404).json({ message: "User not found", success: false });
+    console.log(user);
+    console.log(password);
+    console.log(user.password);
     const validity = await bcryptjs.compare(password, user.password);
-    if (!validity) res.status(400).json({ message: "Invalid credentials" });
+    console.log(validity);
+    if (!validity)
+      res.status(400).json({ message: "Invalid credentials", success: false });
     const token = jwt.sign({ id: user._id }, "secretkey");
     res
       .cookie("token", token, {
@@ -32,7 +38,8 @@ export const Login = async (req, res) => {
       .status(200)
       .json(user);
   } catch (err) {
-    res.status(409).json({ message: err.message });
+    //res.status(409).json({ message: err.message, success: false });
+    console.log(err);
   }
 };
 export const Googlefun = async (req, res) => {
@@ -65,7 +72,7 @@ export const Googlefun = async (req, res) => {
         .json(user);
     }
   } catch (err) {
-    res.status(409).json({ message: err.message });
+    res.status(409).json({ message: err.message, success: false });
   }
 };
 export const Logout = async (req, res) => {
@@ -73,6 +80,6 @@ export const Logout = async (req, res) => {
     res.clearCookie("token");
     res.status(200).json("Logged out");
   } catch (err) {
-    res.status(409).json({ message: err.message });
+    res.status(409).json({ message: err.message, success: false });
   }
 };

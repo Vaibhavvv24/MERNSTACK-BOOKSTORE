@@ -2,7 +2,7 @@ import User from "../models/User.js";
 import bcryptjs from "bcryptjs";
 import Book from "../models/Book.js";
 import { sendEmail } from "../utils/sendEmail.js";
-
+import crypto from "crypto";
 export const updateUser = async (req, res, next) => {
   if (req.user.id !== req.params.id) {
     return res.status(403).json("You can update only your account");
@@ -70,7 +70,8 @@ export const Forgot = async (req, res, next) => {
     if (!user) {
       return res.json("User not found");
     }
-    const resetToken = user.generateToken();
+    const resetToken = await user.generateToken();
+    await user.save();
     const message = `Please click on the link below to reset your password \n\n ${process.env.CLIENT_URL}/reset/${resetToken}`;
     await sendEmail(
       user.email,
@@ -84,12 +85,28 @@ export const Forgot = async (req, res, next) => {
   }
 };
 export const Reset = async (req, res, next) => {
+  const { token } = req.params;
+  const { password } = req.body;
+
+  const resetToken1 = crypto.createHash("sha256").update(token).digest("hex");
+  console.log(resetToken1);
+  const user = await User.findOne({
+    resetPasswordtoken: resetToken1,
+    resetPasswordExpire: { $gt: Date.now() },
+  });
+  if (!user) {
+    return res.status(404).json({ message: "Token is invalid" });
+  } else {
+    const hashedPassword = await bcryptjs.hash(password, 10);
+    console.log(hashedPassword + "hshsh ");
+    user.password = hashedPassword;
+    user.resetPasswordtoken = undefined;
+    user.resetPasswordExpire = undefined;
+    await user.save();
+  }
+
   try {
-    const user = await User.findOne({ email: req.body.email });
-    if (!user) {
-      return res.json("User not found");
-    }
-    res.status(200).json(user);
+    res.status(200).json({ message: "Password updated successfully" });
   } catch (err) {
     next(err);
   }

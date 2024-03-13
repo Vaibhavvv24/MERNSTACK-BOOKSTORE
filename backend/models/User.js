@@ -23,8 +23,6 @@ const userSchema = new mongoose.Schema({
   resetPasswordtoken: String,
   resetPasswordExpire: String,
 });
-
-const User = mongoose.model("User", userSchema);
 userSchema.methods.generateToken = function () {
   const resetToken = crypto.randomBytes(20).toString("hex");
   this.resetPasswordtoken = crypto
@@ -35,4 +33,6 @@ userSchema.methods.generateToken = function () {
 
   return resetToken;
 };
+const User = mongoose.model("User", userSchema);
+
 export default User;
