@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UseCart } from "../context/Cart";
 import CartItem from "../components/CartItem";
@@ -6,20 +6,40 @@ import Empty from "../assets/empty.png";
 const Cartpage = () => {
   const currentUser = JSON.parse(localStorage.getItem("user"));
   const navigate = useNavigate();
-  const { cart, clearCart, getTotal, quantities } = UseCart();
+  const { cart, getTotal, quantities, setCart } = UseCart();
 
-  let prices = [];
+  const [userCart, setUserCart] = useState({});
 
-  function getTotalamount() {
-    for (let item of cart.items) {
-      if (item._id === quantities.itemid) {
-        prices.push(item.salePrice * quantities.quantity);
-      }
+  async function getCart() {
+    try {
+      const res = await fetch(`/api/cart/get/${currentUser._id}`);
+      const data = await res.json();
+      //console.log(data.cart.products);
+      setUserCart(data);
+    } catch (err) {
+      console.log(err);
     }
-    return prices.reduce((a, b) => a + b, 0);
   }
-  if (currentUser) {
-    console.log(currentUser);
+  useEffect(() => {
+    getCart();
+  }, []);
+
+  async function clearCart(e) {
+    e.preventDefault();
+    setCart({ ...cart, items: [], total: 0 });
+    setUserCart({ ...userCart, cart: { products: [], amount: 0 } });
+
+    const res = await fetch(`/api/cart/delete/${currentUser._id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await res.json();
+    //alert(data.message);
+
+    console.log(userCart);
+    console.log(data);
   }
   if (!currentUser) {
     return (
@@ -29,7 +49,7 @@ const Cartpage = () => {
       </div>
     );
   }
-  if (cart.items.length === 0) {
+  if (userCart?.cart?.products?.length === 0) {
     return (
       <div className="flex flex-col justify-center gap-5 items-center">
         <div className="text-3xl text-center mt-4">Cart is empty</div>
@@ -43,27 +63,38 @@ const Cartpage = () => {
       </div>
     );
   }
+
   return (
     <div className="flex flex-col justify-center gap-10 items-center">
       <h1 className="mt-4 text-3xl font-bold"> hello {currentUser.username}</h1>
       <p className="text-2xl">
-        {cart.items.length === 0
+        {userCart?.cart?.products?.length === 0
           ? "Cart is empty"
-          : `You have ${cart.items.length} books in your cart`}
+          : `You have ${userCart?.cart?.products?.length} books in your cart`}
       </p>
+
       <div className="flex  ">
-        <div className="flex flex-col">
+        {/* <div className="flex flex-col">
           {cart.items?.map((item) => (
             <CartItem key={item._id} item={item} />
           ))}
+        </div> */}
+        <div className="flex flex-col">
+          {userCart?.cart?.products?.map((item) => (
+            <CartItem key={item._id} item={item} />
+          ))}
         </div>
+
         <div className="flex flex-col justify-center items-center gap-4 m-2 bg-blue-200 w-[300px] h-[300px] rounded-md">
-          <h1 className="text-2xl text-red-500">Total: ₹{getTotal()}</h1>
+          <h1 className="text-2xl text-red-500">
+            Total: ₹{userCart?.cart?.amount}
+          </h1>
           <p className="text-xl text-red-400">
-            Delivery charges: ₹{getTotal() * 0.1}
+            Delivery charges: ₹{userCart?.cart?.amount * 0.1}
           </p>
           <p className="text-xl text-red-700 ">
-            Grand Total: ₹{getTotal() + getTotal() * 0.1}
+            Grand Total: ₹
+            {userCart?.cart?.amount + userCart?.cart?.amount * 0.1}
           </p>
           <button onClick={clearCart} className="p-2 bg-orange-300 rounded-md">
             Clear Cart

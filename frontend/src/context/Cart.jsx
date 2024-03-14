@@ -5,6 +5,7 @@ const Cartcontext = createContext();
 const CartProvider = ({ children }) => {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
+  const currentUser = JSON.parse(localStorage.getItem("user"));
   const [quantities, setQuantities] = useState({
     itemid: 0,
     quantity: 0,
@@ -64,10 +65,7 @@ const CartProvider = ({ children }) => {
       }
     });
   }
-  function clearCart() {
-    setCart({ ...cart, items: [], total: 0 });
-    setQuantities({ ...quantities, quantity: 0, itemid: 0 });
-  }
+
   function getTotal() {
     return cart.total;
   }
@@ -79,7 +77,6 @@ const CartProvider = ({ children }) => {
         setCart,
         addItem,
         removeItem,
-        clearCart,
         getTotal,
         books,
         setBooks,
