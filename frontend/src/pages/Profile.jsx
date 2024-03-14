@@ -71,7 +71,7 @@ const Profile = () => {
 
   useEffect(() => {
     getCurrentUser();
-  }, []);
+  }, [currentUser._id]);
 
   const handleDelete = async (e) => {
     e.preventDefault();
@@ -86,6 +86,7 @@ const Profile = () => {
       console.log(data);
       setFormData({});
       localStorage.removeItem("user");
+      localStorage.removeItem("authToken");
       //setUser({});
       //setEmail("");
       //setPassword("");
@@ -108,6 +109,7 @@ const Profile = () => {
       const data = await res.json();
       setFormData({});
       localStorage.removeItem("user");
+      localStorage.removeItem("authToken");
 
       //setEmail("");
       //setPassword("");
@@ -118,10 +120,10 @@ const Profile = () => {
       console.log(error);
     }
   };
-  console.log("form wala");
-  console.log(formData);
-  console.log("user wala");
-  console.log(user);
+  //console.log("form wala");
+  //console.log(formData);
+  //console.log("user wala");
+  //console.log(user);
 
   return (
     <>

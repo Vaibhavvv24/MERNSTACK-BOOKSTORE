@@ -12,7 +12,9 @@ export const Signup = async (req, res) => {
   });
   try {
     await user.save();
-    res.status(201).json("User created successfully!");
+    res
+      .status(201)
+      .json({ message: "User created successfully!", success: true, user });
   } catch (err) {
     res.status(409).json({ message: err.message, success: false });
   }
@@ -36,7 +38,7 @@ export const Login = async (req, res) => {
         httpOnly: true,
       })
       .status(200)
-      .json(user);
+      .json({ user, token, success: true });
   } catch (err) {
     //res.status(409).json({ message: err.message, success: false });
     console.log(err);
@@ -53,7 +55,7 @@ export const Googlefun = async (req, res) => {
           httpOnly: true,
         })
         .status(200)
-        .json(user);
+        .json({ user, token, success: true });
     } else {
       const newpwd = Math.random().toString(36).slice(-8); //if user doesn't exist
       const hashedpwd = await bcryptjs.hash(newpwd, 10);
@@ -69,7 +71,7 @@ export const Googlefun = async (req, res) => {
           httpOnly: true,
         })
         .status(200)
-        .json(user);
+        .json({ user, token, success: true });
     }
   } catch (err) {
     res.status(409).json({ message: err.message, success: false });

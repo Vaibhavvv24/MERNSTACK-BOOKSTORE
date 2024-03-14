@@ -10,6 +10,7 @@ const Bookpage = () => {
   const [book, setBook] = useState({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const currentUser = JSON.parse(localStorage.getItem("user"));
 
   const { cart, addItem, removeItem, clearCart, getTotal } = UseCart();
   const navigate = useNavigate();
@@ -32,12 +33,36 @@ const Bookpage = () => {
   }, [id]);
   const discount = book.regularPrice - book.salePrice;
 
-  function addItems() {
+  async function addItems() {
     console.log(cart);
     if (cart.items.find((item) => item._id === book._id)) {
       return;
     }
+    if (!currentUser) {
+      navigate("/login");
+    }
     addItem(book._id);
+    const res = await fetch(`/api/cart/add/${currentUser._id}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        userId: currentUser._id,
+        products: [
+          {
+            salePrice: book.salePrice,
+            regularPrice: book.regularPrice,
+            image: book.image,
+            title: book.title,
+            productId: book._id,
+          },
+        ],
+        amount: book.salePrice,
+      }),
+    });
+    const data = await res.json();
+    console.log(data);
   }
   return (
     <div className="flex">

@@ -1,12 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { UseAuth } from "../context/Auth";
 import { FaRegUserCircle } from "react-icons/fa";
+import { IoCartOutline } from "react-icons/io5";
 
 const Navbar = () => {
-  const { user } = UseAuth();
+  //const { user } = UseAuth();
   const currentUser = JSON.parse(localStorage.getItem("user"));
-  console.log(user);
+  //console.log(currentUser.user);
+  const navigate = useNavigate();
+  //console.log(user);
   return (
     <nav className="bg-blue-200">
       <div className="flex ">
@@ -47,7 +50,9 @@ const Navbar = () => {
             </li>
           )}
           <li>
-            <Link to="/cart">Cart</Link>
+            <button onClick={() => navigate(`/cart/${currentUser._id}`)}>
+              <IoCartOutline size={30} />
+            </button>
           </li>
           <li>
             <Link to="/contact">Contact</Link>

@@ -26,6 +26,7 @@ const cartSchema = new mongoose.Schema(
         },
         productId: {
           type: String,
+          required: true,
         },
       },
     ],
