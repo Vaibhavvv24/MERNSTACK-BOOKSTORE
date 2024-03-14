@@ -10,6 +10,11 @@ const Navbar = () => {
   //console.log(currentUser.user);
   const navigate = useNavigate();
   //console.log(user);
+
+  function navigateToCart() {
+    navigate(`/cart/${currentUser._id}`);
+    window.location.reload();
+  }
   return (
     <nav className="bg-blue-200">
       <div className="flex ">
@@ -50,7 +55,7 @@ const Navbar = () => {
             </li>
           )}
           <li>
-            <button onClick={() => navigate(`/cart/${currentUser._id}`)}>
+            <button onClick={navigateToCart}>
               <IoCartOutline size={30} />
             </button>
           </li>

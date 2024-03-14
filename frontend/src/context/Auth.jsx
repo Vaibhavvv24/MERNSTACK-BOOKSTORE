@@ -42,7 +42,7 @@ function AuthProvider({ children }) {
         setError(data.message);
         return;
       }
-      localStorage.setItem("user", JSON.stringify(data.user));
+      //localStorage.setItem("user", JSON.stringify(data.user));
 
       setUser(JSON.parse(localStorage.getItem("user")));
       //console.log(data);

@@ -16,6 +16,7 @@ const CartItem = ({ item }) => {
     });
     const data = await res.json();
     console.log(data);
+    window.location.reload();
   };
   return (
     <div key={item._id} className="flex  m-5 bg-pink-300 p-4 w-[700px]">

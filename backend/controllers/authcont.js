@@ -80,6 +80,7 @@ export const Googlefun = async (req, res) => {
 export const Logout = async (req, res) => {
   try {
     res.clearCookie("token");
+    console.log(req.user.password);
     res.status(200).json("Logged out");
   } catch (err) {
     res.status(409).json({ message: err.message, success: false });

@@ -11,21 +11,21 @@ const CartProvider = ({ children }) => {
   const [userCart, setUserCart] = useState({});
   const { id } = useParams();
 
-  async function getCart() {
-    try {
-      setMessage("");
-      const res = await fetch(`/api/cart/get/${currentUser._id}`);
-      const data = await res.json();
-      //console.log(data.cart.products);
-
-      setUserCart(data);
-    } catch (err) {
-      console.log(err);
-    }
-  }
   useEffect(() => {
+    async function getCart() {
+      try {
+        setMessage("");
+        const res = await fetch(`/api/cart/get/${currentUser._id}`);
+        const data = await res.json();
+        //console.log(data.cart.products);
+
+        setUserCart(data);
+      } catch (err) {
+        console.log(err);
+      }
+    }
     getCart();
-  }, [id]);
+  }, []);
 
   async function clearCart() {
     //setCart({ ...cart, items: [], total: 0 });
@@ -52,7 +52,6 @@ const CartProvider = ({ children }) => {
         userCart,
         setUserCart,
         clearCart,
-        getCart,
       }}
     >
       {children}

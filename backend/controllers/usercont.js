@@ -99,6 +99,7 @@ export const Reset = async (req, res, next) => {
   } else {
     const hashedPassword = await bcryptjs.hash(password, 10);
     console.log(hashedPassword + "hshsh ");
+    console.log(password);
     user.password = hashedPassword;
     user.resetPasswordtoken = undefined;
     user.resetPasswordExpire = undefined;
