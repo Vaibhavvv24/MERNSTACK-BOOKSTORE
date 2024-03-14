@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { UseCart } from "../context/Cart";
 import CartItem from "../components/CartItem";
-
+import Empty from "../assets/empty.png";
 const Cartpage = () => {
   const currentUser = JSON.parse(localStorage.getItem("user"));
   const navigate = useNavigate();
@@ -31,8 +31,9 @@ const Cartpage = () => {
   }
   if (cart.items.length === 0) {
     return (
-      <div className="flex flex-col justify-center gap-10 items-center">
+      <div className="flex flex-col justify-center gap-5 items-center">
         <div className="text-3xl text-center mt-4">Cart is empty</div>
+        <img src={Empty} alt="emptycart" className="w-1/3 h-1/3" />
         <button
           onClick={() => navigate("/shop")}
           className="p-4 bg-orange-300 rounded-md"

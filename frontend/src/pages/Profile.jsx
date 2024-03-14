@@ -125,13 +125,6 @@ const Profile = () => {
 
   return (
     <>
-      <div className="flex justify-center items-center">
-        <h1 className="text-3xl my-10">Profile</h1>
-        <h1>Welcome {currentUser.username}</h1>
-        <h2>{currentUser.email}</h2>
-        <h2>{currentUser.password}</h2>
-      </div>
-
       <div className="text-center my-10 ">
         <h1 className="text-2xl my-10">Your Profile</h1>
         <div className="flex justify-center items-center ">

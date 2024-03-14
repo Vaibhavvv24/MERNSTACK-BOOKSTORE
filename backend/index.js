@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 import authRoute from "./routes/auth_route.js";
 import userRoute from "./routes/user_route.js";
 import paymentRoute from "./routes/payment_route.js";
+import cartRoute from "./routes/cart_route.js";
 
 import cors from "cors";
 
@@ -28,6 +29,7 @@ app.use(
   express.urlencoded({ limit: "10mb", extended: true, parameterLimit: 50000 })
 );
 app.use("/api", paymentRoute);
+app.use("/api/cart", cartRoute);
 app.use("/api/books", bookRoute);
 app.use("/api/auth", authRoute);
 app.use("/api/user", userRoute);

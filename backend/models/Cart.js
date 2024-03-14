@@ -8,12 +8,24 @@ const cartSchema = new mongoose.Schema(
     },
     products: [
       {
+        salePrice: {
+          type: Number,
+          required: true,
+        },
+        regularPrice: {
+          type: Number,
+          required: true,
+        },
+        image: {
+          type: String,
+          required: true,
+        },
+        title: {
+          type: String,
+          required: true,
+        },
         productId: {
           type: String,
-        },
-        quantity: {
-          type: Number,
-          default: 1,
         },
       },
     ],
