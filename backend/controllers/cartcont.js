@@ -49,3 +49,38 @@ export const deleteCart = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
+export const updateCart = async (req, res) => {
+  if (req.user.id !== req.params.id) {
+    return res.status(403).json("You can update only your cart");
+  }
+  let cart = await Cart.findOne({ userId: req.params.id });
+  const newProducts = cart.products.filter((product) => {
+    console.log(product);
+    console.log(req.body);
+    console.log(product.productId);
+    console.log(product.productId !== req.body.productId);
+    return product.productId !== req.body.productId;
+  });
+
+  const newAmount = newProducts.reduce((acc, curr) => {
+    return acc + curr.salePrice;
+  }, 0);
+  // console.log(newAmount);
+  try {
+    cart = await Cart.findOneAndUpdate(
+      { userId: req.params.id },
+      {
+        $set: {
+          userId: req.body.userId,
+          products: newProducts,
+          amount: newAmount,
+        },
+      },
+      { new: true }
+    );
+    await cart.save();
+    res.status(200).json({ message: "Cart has been updated", cart });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};

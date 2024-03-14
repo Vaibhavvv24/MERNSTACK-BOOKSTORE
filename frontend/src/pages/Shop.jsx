@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Book from "../components/Book";
-import { useNavigate } from "react-router-dom";
-import { UseCart } from "../context/Cart";
+
+import { UseBooks } from "../context/BookC";
 
 const Shop = () => {
-  const { books, loading } = UseCart();
+  const { books, loading } = UseBooks();
 
   return (
     <div className="">

@@ -1,89 +1,58 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 const Cartcontext = createContext();
 
 const CartProvider = ({ children }) => {
-  const [books, setBooks] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
   const currentUser = JSON.parse(localStorage.getItem("user"));
-  const [quantities, setQuantities] = useState({
-    itemid: 0,
-    quantity: 0,
-  });
+  //const [loading, setLoading] = useState(false);
 
-  const getBooks = async function () {
+  const [userCart, setUserCart] = useState({});
+  const { id } = useParams();
+
+  async function getCart() {
     try {
-      setLoading(true);
-      const response = await fetch("/api/books/getAll");
-      const data = await response.json();
-      console.log(data);
-      setBooks(data);
-      setLoading(false);
-    } catch (error) {
-      setLoading(false);
-      console.log(error);
+      setMessage("");
+      const res = await fetch(`/api/cart/get/${currentUser._id}`);
+      const data = await res.json();
+      //console.log(data.cart.products);
+
+      setUserCart(data);
+    } catch (err) {
+      console.log(err);
     }
-  };
+  }
   useEffect(() => {
-    getBooks();
-  }, []);
-  const [cart, setCart] = useState({
-    items: [],
-    total: 0,
-  });
+    getCart();
+  }, [id]);
 
-  function addItem(id) {
-    //books.find((item) => {});
-    books.find((item) => {
-      if (item._id === id) {
-        setCart({
-          ...cart,
-          items: [...cart.items, item],
-          total: cart.total + item.salePrice,
-        });
-        setQuantities({
-          ...quantities,
-          itemid: item._id,
-          quantity: quantities.quantity + 1,
-        });
-      }
+  async function clearCart() {
+    //setCart({ ...cart, items: [], total: 0 });
+    setUserCart({ ...userCart, cart: { products: [], amount: 0 } });
+
+    const res = await fetch(`/api/cart/delete/${currentUser._id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
-  }
-  function removeItem(id) {
-    books.find((item) => {
-      if (item._id === id) {
-        setCart({
-          ...cart,
-          total: cart.total - item.salePrice,
-          items: cart.items.filter((item) => item._id !== id),
-        });
-        setQuantities({
-          ...quantities,
-          quantity: quantities.quantity - 1,
-          itemid: 0,
-        });
-      }
-    });
-  }
+    const data = await res.json();
+    alert(data.message);
+    setMessage(data.message);
 
-  function getTotal() {
-    return cart.total;
+    console.log(userCart);
+    console.log(data);
   }
-
   return (
     <Cartcontext.Provider
       value={{
-        cart,
-        setCart,
-        addItem,
-        removeItem,
-        getTotal,
-        books,
-        setBooks,
-        loading,
-        setLoading,
-        quantities,
-        setQuantities,
+        message,
+        setMessage,
+        userCart,
+        setUserCart,
+        clearCart,
+        getCart,
       }}
     >
       {children}

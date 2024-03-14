@@ -3,44 +3,16 @@ import { useNavigate } from "react-router-dom";
 import { UseCart } from "../context/Cart";
 import CartItem from "../components/CartItem";
 import Empty from "../assets/empty.png";
+
 const Cartpage = () => {
   const currentUser = JSON.parse(localStorage.getItem("user"));
   const navigate = useNavigate();
-  const { cart, getTotal, quantities, setCart } = UseCart();
 
-  const [userCart, setUserCart] = useState({});
+  const { userCart, message, clearCart } = UseCart();
+  console.log(userCart);
 
-  async function getCart() {
-    try {
-      const res = await fetch(`/api/cart/get/${currentUser._id}`);
-      const data = await res.json();
-      //console.log(data.cart.products);
-      setUserCart(data);
-    } catch (err) {
-      console.log(err);
-    }
-  }
-  useEffect(() => {
-    getCart();
-  }, []);
+  //const [loading, setLoading] = useState(false);
 
-  async function clearCart(e) {
-    e.preventDefault();
-    setCart({ ...cart, items: [], total: 0 });
-    setUserCart({ ...userCart, cart: { products: [], amount: 0 } });
-
-    const res = await fetch(`/api/cart/delete/${currentUser._id}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const data = await res.json();
-    //alert(data.message);
-
-    console.log(userCart);
-    console.log(data);
-  }
   if (!currentUser) {
     return (
       <div className="flex flex-col justify-center gap-10 items-center">
@@ -49,7 +21,10 @@ const Cartpage = () => {
       </div>
     );
   }
-  if (userCart?.cart?.products?.length === 0) {
+  if (
+    userCart?.cart?.products?.length === 0 ||
+    message === "Cart has been deleted"
+  ) {
     return (
       <div className="flex flex-col justify-center gap-5 items-center">
         <div className="text-3xl text-center mt-4">Cart is empty</div>
@@ -66,6 +41,7 @@ const Cartpage = () => {
 
   return (
     <div className="flex flex-col justify-center gap-10 items-center">
+      {/* {loading && <h1>Loading...</h1>} */}
       <h1 className="mt-4 text-3xl font-bold"> hello {currentUser.username}</h1>
       <p className="text-2xl">
         {userCart?.cart?.products?.length === 0

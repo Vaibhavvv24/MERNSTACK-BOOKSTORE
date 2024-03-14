@@ -5,8 +5,10 @@ import { UseCart } from "../context/Cart";
 //import Razorpay from "razorpay";
 const Checkout = () => {
   const navigate = useNavigate();
-  const { cart, getTotal } = UseCart();
+  //const { cart, getTotal } = UseCart();
   const currentUser = JSON.parse(localStorage.getItem("user"));
+
+  const { userCart } = UseCart();
 
   const payNow = async () => {
     const res = await fetch("/api/getAPIKEY");
@@ -14,7 +16,7 @@ const Checkout = () => {
     const API_KEY = apiKey.KEY;
 
     console.log(API_KEY);
-    const amount = getTotal() + getTotal() * 0.1;
+    const amount = userCart.cart.amount + userCart.cart.amount * 0.1;
     const response = await fetch("/api/payment/checkout", {
       method: "POST",
       headers: {
@@ -63,7 +65,7 @@ const Checkout = () => {
       </h1>
       <div className="flex mt-12 gap-10 ">
         <div className="flex flex-col gap-10 w-1/2 bg-pink-600 p-5 rounded-md">
-          {cart.items.map((item) => (
+          {userCart.cart.products.map((item) => (
             <div
               key={item._id}
               className="flex flex-col justify-center gap-4 items-center bg-red-100 rounded-md"
@@ -77,7 +79,7 @@ const Checkout = () => {
         </div>
         <div className="flex flex-col items-center justify-center w-1/2 bg-blue-400 p-6 rounded-md">
           <h1 className="text-2xl">
-            Total Amount:₹{getTotal() + getTotal() * 0.1}
+            Total Amount:₹{userCart.cart.amount * 0.1 + userCart.cart.amount}
           </h1>
           <h2 className="text-xl mt-2">Enter your Details</h2>
 

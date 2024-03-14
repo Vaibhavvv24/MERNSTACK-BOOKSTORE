@@ -12,7 +12,8 @@ const Bookpage = () => {
   const [error, setError] = useState(null);
   const currentUser = JSON.parse(localStorage.getItem("user"));
 
-  const { cart, addItem, removeItem, clearCart, getTotal } = UseCart();
+  const { message, setMessage } = UseCart();
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -34,14 +35,11 @@ const Bookpage = () => {
   const discount = book.regularPrice - book.salePrice;
 
   async function addItems() {
-    console.log(cart);
-    if (cart.items.find((item) => item._id === book._id)) {
-      return;
-    }
+    setMessage("");
+    alert("Item added to cart");
     if (!currentUser) {
       navigate("/login");
     }
-    addItem(book._id);
     const res = await fetch(`/api/cart/add/${currentUser._id}`, {
       method: "POST",
       headers: {
