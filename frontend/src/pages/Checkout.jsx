@@ -17,6 +17,7 @@ const Checkout = () => {
 
     console.log(API_KEY);
     const amount = userCart.cart.amount + userCart.cart.amount * 0.1;
+    console.log(userCart.cart.products);
     const response = await fetch("/api/payment/checkout", {
       method: "POST",
       headers: {
@@ -24,9 +25,12 @@ const Checkout = () => {
       },
       body: JSON.stringify({
         amount,
+        userId: currentUser._id,
+        products: userCart.cart.products,
       }),
     });
     const data = await response.json();
+    localStorage.setItem("order", JSON.stringify(data));
     console.log(data);
     const options = {
       key: API_KEY, // Enter the Key ID generated from the Dashboard

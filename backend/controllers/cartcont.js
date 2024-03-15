@@ -46,10 +46,6 @@ export const deleteCart = async (req, res) => {
 export const updateCart = async (req, res) => {
   let cart = await Cart.findOne({ userId: req.params.id });
   const newProducts = cart.products.filter((product) => {
-    console.log(product);
-    console.log(req.body);
-    console.log(product.productId);
-    console.log(product.productId !== req.body.productId);
     return product.productId !== req.body.productId;
   });
 
