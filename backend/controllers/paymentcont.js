@@ -32,6 +32,7 @@ export const Checkout = async (req, res) => {
         products: req.body.products,
         amount: req.body.amount,
         orderId: order.id,
+        createdAt: order.created_at,
       };
       newOrders.orders.push(order1);
       await newOrders.save();
@@ -40,6 +41,7 @@ export const Checkout = async (req, res) => {
         products: req.body.products,
         amount: req.body.amount,
         orderId: order.id,
+        createdAt: order.created_at,
       };
       const orderstemp = [];
       orderstemp.push(order1);

@@ -60,6 +60,11 @@ const Navbar = () => {
             </button>
           </li>
           <li>
+            <button onClick={() => navigate(`/orders/${currentUser._id}`)}>
+              Orders
+            </button>
+          </li>
+          <li>
             <Link to="/contact">Contact</Link>
           </li>
         </ul>

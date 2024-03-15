@@ -23,7 +23,8 @@ const Cartpage = () => {
   }
   if (
     userCart?.cart?.products?.length === 0 ||
-    message === "Cart has been deleted"
+    message === "Cart has been deleted" ||
+    userCart.cart === null
   ) {
     return (
       <div className="flex flex-col justify-center gap-5 items-center">

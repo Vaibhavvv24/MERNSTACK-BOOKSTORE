@@ -20,6 +20,7 @@ import PaymentSuccess from "./pages/PaymentSuccess";
 import Forgot from "./pages/Forgot";
 import ResetPass from "./pages/ResetPass";
 import { BookProvider } from "./context/BookC";
+import PaymentHistory from "./pages/PaymentHistory";
 function App() {
   return (
     <>
@@ -34,6 +35,7 @@ function App() {
                   <Route path="/sell" element={<Sell />} />
                   <Route path="/profile/:id" element={<Profile />} />
                   <Route path="/cart/:id" element={<Cartpage />} />
+                  <Route path="/orders/:id" element={<PaymentHistory />} />
                 </Route>
                 <Route path="/shop" element={<Shop />} />
                 <Route path="/contact" element={<Contact />} />
