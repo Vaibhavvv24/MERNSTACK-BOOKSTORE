@@ -62,6 +62,10 @@ const Bookpage = () => {
     const data = await res.json();
     console.log(data);
   }
+  const handleBuy = () => {
+    navigate(`/shop/book/checkout/${book._id}`);
+    localStorage.setItem("book", JSON.stringify(book));
+  };
   return (
     <div className="flex">
       {loading && <h1>Loading...</h1>}
@@ -103,7 +107,7 @@ const Bookpage = () => {
           </button>
           <button
             className="bg-orange-300 p-2 rounded-lg w-[90%] text-white "
-            onClick={() => navigate(`/shop/book/checkout/${book._id}`)}
+            onClick={handleBuy}
           >
             Buy Now
           </button>

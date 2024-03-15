@@ -71,9 +71,8 @@ const Checkout = () => {
               className="flex flex-col justify-center gap-4 items-center bg-red-100 rounded-md"
             >
               <p>Book: {item.title}</p>
-              <p>By: {item.author}</p>
+
               <p>Price: ₹{item.salePrice}</p>
-              <p>Published: {item.publisher}</p>
             </div>
           ))}
         </div>

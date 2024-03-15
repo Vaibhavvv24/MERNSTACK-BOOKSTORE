@@ -6,6 +6,7 @@ const PaymentSuccess = () => {
   console.log(query);
   const Navigate = useNavigate();
   const refid = query.get("reference");
+  localStorage.removeItem("book");
   return (
     <div className="flex flex-col justify-center items-center mt-[200px] gap-4">
       <h1 className="text-3xl font-bold">Payment Success</h1>
