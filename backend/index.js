@@ -7,6 +7,7 @@ import userRoute from "./routes/user_route.js";
 import paymentRoute from "./routes/payment_route.js";
 import orderRoute from "./routes/order_route.js";
 import cartRoute from "./routes/cart_route.js";
+import contactRoute from "./routes/contact_route.js";
 
 import cors from "cors";
 
@@ -35,6 +36,7 @@ app.use("/api/orders", orderRoute);
 app.use("/api/books", bookRoute);
 app.use("/api/auth", authRoute);
 app.use("/api/user", userRoute);
+app.use("/api/contact", contactRoute);
 app.get("/api/getAPIKEY", (req, res) => {
   res.json({ KEY: process.env.RAZOR_KEY });
 });

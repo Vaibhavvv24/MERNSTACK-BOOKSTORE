@@ -7,11 +7,16 @@ const Checkoutsingle = () => {
   const book = localStorage.getItem("book")
     ? JSON.parse(localStorage.getItem("book"))
     : null;
+
   const currentUser = JSON.parse(localStorage.getItem("user"));
   const [phone, setPhone] = useState("");
 
   const payNow = async () => {
     if (phone === "") return alert("Please enter your phone number");
+    const books = [];
+    console.log(book);
+    book.productId = book._id;
+    books.push(book);
     const res = await fetch("/api/getAPIKEY");
     const apiKey = await res.json();
     const API_KEY = apiKey.KEY;
@@ -25,6 +30,8 @@ const Checkoutsingle = () => {
       },
       body: JSON.stringify({
         amount,
+        userId: currentUser._id,
+        products: books,
       }),
     });
     const data = await response.json();

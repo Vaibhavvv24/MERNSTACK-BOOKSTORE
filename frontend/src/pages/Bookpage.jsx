@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import Harry from "../assets/harry.jpg";
 
 import { UseCart } from "../context/Cart";
 
@@ -12,7 +11,7 @@ const Bookpage = () => {
   const [error, setError] = useState(null);
   const currentUser = JSON.parse(localStorage.getItem("user"));
 
-  const { message, setMessage } = UseCart();
+  const { setMessage } = UseCart();
 
   const navigate = useNavigate();
 
